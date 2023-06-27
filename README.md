@@ -31,7 +31,7 @@ Il paziente puo essere registrato nel sistema senza creare l'account per esso. /
 
 [Worker]
 Medici e amministratori sono lavoratori di qualche clinica\e.
-I lavoratori hanno il codice fiscale, nome, cognome, età e il stipendio per la clinica dove lavora.
+I lavoratori hanno il codice fiscale, nome, cognome, età.
 Ogni medico può lavorare in più cliniche mentre il personale amministrativo è dipendente di un specifica clinica.
 
 [Medico]
@@ -46,7 +46,10 @@ Se l'amministratore 'A' viene cancellato da un altro amministratore 'B', allora 
 
 [Clinic]
 Le cliniche sono caratterizate da, un luogo, un orario , oltre che da  vari reparti.
-Ogni reparto ha un medico primario e i medici che lavorono gli.
+Ogni reparto ha un medico primario e i medici che lavorono li.
+La clinica paga uno stpendio ad ogni lavoratore.
+Nella clinica si può tenere traccia dei dipendenti presenti e quelli passati, dei quali si sa anche la data di licenziamento.
+
 
 [Result]
 i risultati devono riportare: il paziente, la data, il medico e la clinca 
@@ -58,3 +61,4 @@ i risultati devono riportare: il paziente, la data, il medico e la clinca
 3) le cliniche hanno lo stesso orario?
 4) quanti sono i pazienti che hanno una clinica nella propria residenza
 5) conviene tenere un attributo per il costo totale degli stipendi, o derivarlo dalla somma di tutti i dipendenti
+6) il paziente è già stato inserito nel sistema?
