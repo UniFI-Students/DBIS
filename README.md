@@ -23,3 +23,10 @@ I dati delle prenotazioni vengono salvati, e l’orario smette di essere disponi
 Ogni fine settimana la tabella delle prenotazioni viene resettata per essere disponibli per la settimana successiva.
 
 
+Il Sistema Sanitario Nazionale (S.S.N) chiede di implementare un sito per gestire le prenotazioni di visite da parte dei pazienti.
+Il sito deve prevedere la possibilità di accesso di dottori e amministratori.
+Un paziente può controllare sul sito gli orari dei medici, divisi per specializazioni, e può scegliere in quale clinica andare.
+I pazienti devono inserire nel sistema , nome, cognome,  età , città di residenza , e codice fiscale.
+Ogni medico può andare in più cliniche mentre il personale amministrativo è dipendente di un specifica clinica.
+Le cliniche sono caratterizate da, un luogo, un numero di dipendenti e un orario , oltre che da  vari reparti, con un medico primario a gestione di ognuno di esso
+
