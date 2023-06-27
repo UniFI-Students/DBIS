@@ -48,6 +48,9 @@ Se l'amministratore 'A' viene cancellato da un altro amministratore 'B', allora 
 Le cliniche sono caratterizate da, un luogo, un orario , oltre che da  vari reparti.
 Ogni reparto ha un medico primario e i medici che lavorono gli.
 
+[Result]
+i risultati devono riportare: il paziente, la data, il medico e la clinca 
+
 [List of interrogations on those entities]
 
 1)Per calcolare il numero di dipendenti, conviene sommare il numero di admin e medici oppure tenere un attributo apposito?
