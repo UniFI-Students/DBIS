@@ -54,3 +54,4 @@ Ogni reparto ha un medico primario e i medici che lavorono gli.
 2) per calcolare il numero di primari, basta vedere il numero di reparto
 3) le cliniche hanno lo stesso orario?
 4) quanti sono i pazienti che hanno una clinica nella propria residenza
+5) conviene tenere un attributo per il costo totale degli stipendi, o derivarlo dalla somma di tutti i dipendenti
