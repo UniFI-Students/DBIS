@@ -39,7 +39,7 @@ Ogni medico ha il suo orario disponibile per le prenotazioni per la specifica cl
 Ogni medico è caratterizato da una specializazone.   
 
 [Administrator]
-Amministratore e definito dal livello di amministrazione.
+Amministratore è definito dal livello di amministrazione.
 Ci sono due livelli di amministrazione. Uno serve per avere tutti le possibilità di modificare tutti i dati del sistema(anche cancelare altri amministratori) e
 l'altro per modicificare, cancellare, o spostare le prenotazioni, su richiesta sia dei medici o dei pazienti.
 Se l'amministratore 'A' viene cancellato da un altro amministratore 'B', allora amministratore 'B' diventra risponsabile delle modifice dell'amministratore 'A' //così ho definito una procedura
@@ -49,3 +49,8 @@ Le cliniche sono caratterizate da, un luogo, un orario , oltre che da  vari repa
 Ogni reparto ha un medico primario e i medici che lavorono gli.
 
 [List of interrogations on those entities]
+
+1)Per calcolare il numero di dipendenti, conviene sommare il numero di admin e medici oppure tenere un attributo apposito?
+2) per calcolare il numero di primari, basta vedere il numero di reparto
+3) le cliniche hanno lo stesso orario?
+4) quanti sono i pazienti che hanno una clinica nella propria residenza
