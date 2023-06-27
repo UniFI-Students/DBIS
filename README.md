@@ -26,7 +26,7 @@ Ogni fine settimana la tabella delle prenotazioni viene resettata per essere dis
 
 REWRITED REQUEST VERSION
 
-Il Sistema Sanitario Nazionale (S.S.N) chiede di implementare un sito per gestire le prenotazioni di visite da parte dei pazienti.
+Il Sistema Sanitario Nazionale (S.S.N) chiede di implementare un sito per gestire le cliniche.
 
 Il sito deve prevedere la possibilità di accesso di dottori, amministratori e pazienti trammite i suoi account.
 Per avere l'acesso sul sito bisogna inserire il login e password.
