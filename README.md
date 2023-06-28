@@ -34,7 +34,7 @@ Medici e amministratori sono lavoratori di qualche clinica\e.
 I lavoratori hanno il codice fiscale, nome, cognome, età.
 Ogni medico può lavorare in più cliniche mentre il personale amministrativo è dipendente di un specifica clinica.
 
-[Medico]
+[Medic]
 Ogni medico ha il suo orario disponibile per le prenotazioni per la specifica clinica. Tal orario puo essere cambiato solo da amministratori di quella clinica.
 Ogni medico è caratterizato da una specializazone.   
 
@@ -45,16 +45,19 @@ l'altro solo per modicificare, cancellare, o spostare le prenotazioni, su richie
 //Se l'amministratore 'A' viene cancellato da un altro amministratore 'B', allora amministratore 'B' diventra risponsabile delle modifice dell'amministratore 'A' //così ho definito una procedura
 
 [Clinic]
-Le cliniche sono caratterizate da: un luogo, un orario , oltre che da  vari reparti.
+Le cliniche sono caratterizate da: un luogo, un orario , e dai reparti.
 La clinica paga uno stpendio ad ogni lavoratore.
+la clinica riporta il numero di lavoratori associati.
 Nella clinica si può tenere traccia dei dipendenti presenti e quelli passati, dei quali si sa anche la data di licenziamento.
 
 [Department] 
 Ogni reparto ha un medico primario e i medici che lavorono li.
+Ogni reparto è definito per la sua specializzazione, e solo medici con quella specializzazione possono lavorarci.
+Ogni reparto riporta il numero di medici che ci lavorano.
 Un medico non può appartenere a 2 reparti.
 
 [Result]
-i risultati devono riportare: il paziente, la data, il medico e la clinca 
+i risultati devono riportare: il paziente, la data, il medico e la clinca, e un documento sul risultato
 
 [List of interrogations on those entities]
 
