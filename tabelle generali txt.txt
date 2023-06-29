@@ -1,0 +1,84 @@
+ACCOUNT
+
+create table if not exists ACCOUNT(
+ID varchar(10) primary key,
+password int
+)engine=innodb;
+
+
+PATIENT
+
+create table if not exists PATIENT(
+codice_fiscale varchar(16) primary key,
+nome varchar(10) not null,
+cognome varchar(10) not null,
+sesso enum('f','m'),
+data_di_nascita date
+)engine=innodb;	
+
+WORKER
+
+create table if not exists WORKER(
+codice_fiscale varchar(16) primary key,
+nome varchar(10) not null,
+cognome varchar(10) not null,
+eta int
+)engine innoDB;
+
+MEDIC
+
+create table if not exists MEDIC(
+codice_fiscale varchar(16) primary key,
+foreign key(codice_fiscale) references WORKER(codice_fiscale) ,
+nome varchar(10),
+foreign key(nome) references WORKER(nome),
+cognome varchar(10),
+foreign key(cognome) references WORKER(cognome),
+eta int,
+foreign key(eta) references WORKER(eta),
+specializazione varchar(10)
+
+ADMINISTRATOR
+
+create table if not exists ADMINISTRATOR(
+codice_fiscale varchar(16) primary key,
+foreign key(codice_fiscale) references WORKER(codice_fiscale) ,
+nome varchar(10),
+foreign key(nome) references WORKER(nome),
+cognome varchar(10),
+foreign key(cognome) references WORKER(cognome),
+eta int,
+foreign key(eta) references WORKER(eta),
+livello_admin int
+)engine=innoDB;
+
+CLINIC
+
+create table if not exists CLINIC(
+luogo varchar(10) primary key,
+orario time,
+reparti varchar(10), 
+num_lavoratori int,
+stipendio int
+) engine=innoDB;
+
+DEPARTMENT
+
+create table if not exists DEPARTMENT(
+specializazione varchar(10) primary key,
+num_medici int
+)engine=innoDB;
+
+RESULT
+
+create table if not exists RESULT(
+documento varchar(50) primary key,
+paziente varchar(10),
+foreign key(paziente) references PATIENT(nome),
+data date,
+medico varchar(10),
+foreign key(medico) references MEDIC(nome),
+clinica varchar(10),
+foreign key(clinica) references CLINIC(luogo)
+) engine=innoDB;
+
