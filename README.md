@@ -29,7 +29,7 @@ I pazienti hanno nome, cognome,  età , città di residenza , e codice fiscale. 
 Un paziente può controllare sul sito gli orari dei medici, divisi per specializazioni, e può scegliere in quale clinica andare.
 Il paziente puo essere registrato nel sistema senza creare l'account per esso. /* Funzionamento */ Questo serve per i casi specifici se il paziente sta in gravi condizioni e non era presenta nel sistema prima.
 
-[Worker]
+[Employer]
 Medici e amministratori sono lavoratori di qualche clinica\e.
 I lavoratori hanno il codice fiscale, nome, cognome, età.
 Ogni medico può lavorare in più cliniche mentre il personale amministrativo è dipendente di un specifica clinica.
@@ -46,7 +46,7 @@ l'altro solo per modicificare, cancellare, o spostare le prenotazioni, su richie
 
 [Clinic]
 Le cliniche sono caratterizate da: un luogo, un orario , e dai reparti.
-La clinica paga uno stpendio ad ogni lavoratore.
+La clinica paga uno stpendio ad ogni lavoratore corrente.
 la clinica riporta il numero di lavoratori associati.
 Nella clinica si può tenere traccia dei dipendenti presenti e quelli passati, dei quali si sa anche la data di licenziamento.
 
