@@ -73,6 +73,16 @@ Il tempo di prenotazione e gestito sia dai medici che dai amministratori di clin
 5) Conviene tenere un attributo per il costo totale degli stipendi, o derivarlo dalla somma di tutti i dipendenti
 6) Il paziente è già stato inserito nel sistema?
 
+## Entity Relationship graphical schemes
+
+### Entity Relationship graphical scheme
+
+![Alt text](Entity_Relationship_Scheme.png?raw=true "ER Scheme")
+
+### Translated Entity Relationship graphical scheme
+
+![Alt text](Translated_ER_Scheme.png?raw=true "Translated ER Scheme")
+
 ## Translated Entity Relationship scheme
 
 ### Entity tables
@@ -96,6 +106,7 @@ Il tempo di prenotazione e gestito sia dai medici che dai amministratori di clin
 2. ClinicSchedule(*ClinicId*, *WorkScheduleId*)
 
 ### Reference keys
+
 1. Patient.AccountId → Account.Id
 2. Employer.AccountId → Account.Id
 3. Medic.EmployerPC → Employer.PC
