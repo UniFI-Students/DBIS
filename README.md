@@ -87,40 +87,43 @@ Il tempo di prenotazione e gestito sia dai medici che dai amministratori di clin
 
 ### Entity tables
 
-1. Patient(**PC**, Name, Surname, Age, Street, City, Country, PostCode, *AccountId**
+1. Patient(**PC**, Name, Surname, Age, Street, City, Country, PostCode, *AccountId**)
 2. Employer(**PC**, Name, Surname, Age, *AccountId**)
-3. Medic(***EmployerPC***, Specialization)
+3. Medic(***EmployerPC***, *SpecializationId*)
 4. Administrator(***EmployerPC***, AdministrationType)
 5. Account(**Id**, Login, Password, Type)
-6. CurrentEmployment(***EmployerPC***, **StartDate**, *ClinicId*, *DepSpecialization*, Salary)
-7. PastEmployment(***EmployerPC***, **StartDate**, *ClinicId*, DismissalDate)
+6. CurrentEmployment(***EmployerPC***, **StartDate**, ***ClinicId***, Salary)
+7. PastEmployment(***EmployerPC***, **StartDate**, ***ClinicId***, DismissalDate)
 8. Clinic(**Id**, Street, City, Country, PostCode)
-9. Department(***ClinicId***, **Specialization**, *PrimaryMedicEmployerPC*)
-10. WorkSchedule(**Id**, StartTime, EndTime, Day*, DayOfTheWeek*)
+9. Department(***ClinicId***, ***SpecializationId***, *PrimaryMedicEmployerPC*)
+10. WorkSchedule(**Id**, StartTime, EndTime, Day*, DayOfTheWeek*, Type)
 11. Result(**Date**, ***ClinicId***, ***MedicEmployerPC***, ***PatientPC***, Document)
 12. AppointmentBooking(**DateTime**, ***ClinicId***, ***MedicEmployerPC***, *PatientPC**)
+13. Specialization(**Id**, Name)
 
 ### Relationship tables
 
-1. EmployerSchedule(*CurrEmployerPC*, *CurrEmployerStartDate*, *WorkScheduleId*)
-2. ClinicSchedule(*ClinicId*, *WorkScheduleId*)
+1. EmployerSchedule(***CurrEmployerPC***, ***CurrEmployerStartDate***, ***CurrEmployerClinicId***, ***WorkScheduleId***)
+2. ClinicSchedule(***ClinicId***, ***WorkScheduleId***)
+3. Department-CurrentEmployment(***CEEmployerPC***, **CEStartDate**, ***ClinicId***,  ***DepSpecializationId***)
 
 ### Reference keys
 
 1. Patient.AccountId → Account.Id
 2. Employer.AccountId → Account.Id
 3. Medic.EmployerPC → Employer.PC
-4. Administrator.EmployerPC → Employer.PC
-5. CurrentEmployment.EmployerPC → Employer.PC
-6. CurrentEmployment.ClinicId → Clinic.Id
-7. CurrentEmployment.DepSpecialization → Department.Specialization
+4. Medic.SpecializationId → Specialization.Id
+5. Administrator.EmployerPC → Employer.PC
+6. CurrentEmployment.EmployerPC → Employer.PC
+7. CurrentEmployment.ClinicId → Clinic.Id
 8. PastEmployment.EmployerPC → Employer.PC
 9. PastEmployment.ClinicId → Clinic.Id
 10. Department.ClinicId → Clinic.Id
-11. Department.PrimaryMedicEmployerPC → Medic.EmployerPC
-12. Result.ClinicId → Clinic.Id
-13. Result.MedicEmployerPC → Medic.EmployerPC
-14. Result.PatientPC → Patient.PC
-15. AppointmentBooking.ClinicId → Clinic.Id
-16. AppointmentBooking.MedicEmployerPC → Medic.EmployerPC
-17. AppointmentBooking.PatientPC → Patient.PC
+11. Department.SpecializationId → Specialization.Id
+12. Department.PrimaryMedicEmployerPC → Medic.EmployerPC
+13. Result.ClinicId → Clinic.Id
+14. Result.MedicEmployerPC → Medic.EmployerPC
+15. Result.PatientPC → Patient.PC
+16. AppointmentBooking.ClinicId → Clinic.Id
+17. AppointmentBooking.MedicEmployerPC → Medic.EmployerPC
+18. AppointmentBooking.PatientPC → Patient.PC
