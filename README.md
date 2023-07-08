@@ -87,7 +87,9 @@ Il tempo di prenotazione e gestito sia dai medici che dai amministratori di clin
 
 ### Entity tables
 
-1. Patient(**PC**, Name, Surname, Age, Street, City, Country, PostCode, *AccountId**)
+// **ES** primary key,*ES* foreign key. ***ES*** foreign primary key, ES* maybe be null 
+
+1. Patient(**PC**, Name, Surname, Age, Street, City, Country, PostCode, *AccountId**) 
 2. Employer(**PC**, Name, Surname, Age, *AccountId**)
 3. Medic(***EmployerPC***, *SpecializationId*)
 4. Administrator(***EmployerPC***, AdministrationType)
@@ -105,7 +107,7 @@ Il tempo di prenotazione e gestito sia dai medici che dai amministratori di clin
 
 1. EmployerSchedule(***CurrEmployerPC***, ***CurrEmployerStartDate***, ***CurrEmployerClinicId***, ***WorkScheduleId***)
 2. ClinicSchedule(***ClinicId***, ***WorkScheduleId***)
-3. Department-CurrentEmployment(***CEEmployerPC***, **CEStartDate**, ***ClinicId***,  ***DepSpecializationId***)
+3. DepartmentCurrentEmployment(***CEEmployerPC***, **CEStartDate**, ***ClinicId***,  ***DepSpecializationId***) // assumo che CEStartDate debba essere foreign key
 
 ### Reference keys
 
