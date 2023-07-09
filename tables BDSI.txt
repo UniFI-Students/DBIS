@@ -1,7 +1,7 @@
-ENTITIES:
+#ENTITIES:
 
 
-ACCOUNT:
+#ACCOUNT:
 
 create table if not exists Account(
 ID int primary key,
@@ -10,13 +10,13 @@ Password int not null,
 Type enum('Patient','Employer') not null
 )engine=innoDB;
 
-PATIENT:
+#PATIENT:
 
 create table if not exists Patient(
 PC char(16) primary key,
 Name char(10) not null,
 Surname char(10) not null,
-Age int not null,     -- we can also use date--
+BirthDate date not null,     
 Street char (15) not null,
 City char(10) not null,
 Country char(10) not null,
@@ -26,25 +26,25 @@ foreign key (AccountId) references Account(ID)
 ) engine=innoDB;
 
 
-EMPLOYER:
+#EMPLOYER:
 
 create table if not exists Employer (
 PC char(16) primary key,
 Name char(10) not null,
 Surname char(10) not null,
-Age int not null,
+BirthDate date not null,
 AccountId int,
 foreign key (AccountId) references Account(ID)
 ) engine=innoDB;
 
-SPECIALIZATION:
+#SPECIALIZATION:
 
 create table if not exists Specialization(
 ID int primary key,
 Name char(10) not null
 ) engine=innoDB;
 
-MEDIC:
+#MEDIC:
 
 create table if not exists Medic(
 EmployerPC char(16) primary key,
@@ -53,15 +53,15 @@ SpecializationID int not null,
 foreign key(SpecializationID) references Specialization(ID)
 )engine=innoDB;
 
-ADMINISTRATOR:
+#ADMINISTRATOR:
 
 create table if not exists Administrator(
 EmployerPC char(16) primary key,
 foreign key(EmployerPC) references Employer(PC),
-AdministratorType enum('A','B') not null
+AdministratorType int not null
 )engine=innoDB;
 
-CLINIC:
+#CLINIC:
 
 create table if not exists Clinic(
 ID int primary key,
@@ -71,7 +71,7 @@ Country char(10) not null,
 PostCode int not null
 )engine=innoDB;
 
-CURRENTEMOLYMENT:
+#CURRENT_EMOLYMENT:
 
 create table if not exists CurrentEmployment(
 EmployerPC char(16) not null,
@@ -83,7 +83,7 @@ foreign key(ClinicID) references Clinic(ID),
 Salary int
 )engine=innoDB;
 
-PASTEMPLOYER:
+#PAST_EMPLOYMENT:
 
 create table if not exists PastEmployment(
 EmployerPC char(16) not null,
@@ -95,7 +95,7 @@ foreign key(ClinicID) references Clinic(ID),
 DismissalDate date
 )engine=innoDB;
 
-DEPARTMENT:
+#DEPARTMENT:
 
 create table if not exists Department(
 ClinicID int not null,
@@ -107,32 +107,32 @@ PrimaryMedicEmployerPC char(16) not null,
 foreign key(PrimaryMedicEmployerPC) references Medic(EmployerPC)
 )engine=innoDB;
 
-WORKSCHEDULE:
+#WORKSCHEDULE:
 
 create table WorkSchedule(
 ID int primary key,
 StartTime time not null,
 EndTime time not null,
-Day date,
-dayoftheweek date, #can't use dayofweek
+Date date,
+dayoftheweek enum('MON','TUE',WED','THU','FRI','SAT','SUN'),
 Type enum('Daily work schedule','Week daily work schedule')
 )engine=innoDB;
 
-RESULT:
+#RESULT:
 
 create table if not exists Result(
 Date date not null,
 ClinicID int not null,
 MedicEmployerPC char(16) not null,
 PatientPC char(16) not null,
-primary key(ClinicID,MedicEmployerPC,PatientPC),
+primary key(Date, ClinicID, MedicEmployerPC, PatientPC),
 foreign key(ClinicID) references Clinic(ID),
 foreign key(MedicEmployerPC) references Medic(EmployerPC),
 foreign key(PatientPC) references Patient(PC),
 Document blob not null
 )engine=innoDB;
 
-APPOINTMENTBOOKING:
+#APPOINTMENTBOOKING:
 
 create table if not exists AppointmentBooking(
 DateTime datetime not null,
@@ -145,10 +145,10 @@ PatientPC char(16),
 foreign key(PatientPC) references Patient(PC)
 )engine=innoDB;
 
-RELATIONSHIP:
+#RELATIONSHIP:
 
 
-EMPLOYERSCHEDULE:
+#EMPLOYERSCHEDULE:
 
 create table if not exists EmployerSchedule(
 CurrEmployerPC char(16) not null,
@@ -163,7 +163,7 @@ foreign key(WorkScheduleID) references WorkSchedule(ID)
 )engine=innoDB;
 
 
-CLINICSCHEDULE:
+#CLINICSCHEDULE:
 
 
 create table if not exists ClinicSchedule(
@@ -175,7 +175,7 @@ foreign key(WorkScheduleID) references WorkSchedule(ID)
 )engine=innoDB;
 
 
-DEPARTMENTCURRENTEMPLYMENT:
+#DEPARTMENTCURRENTEMPLYMENT:
 
 
 create table if not exists DepartmentCurrentEmployment(
@@ -184,8 +184,8 @@ CEStartDate date not null,
 ClinicID int not null,
 DepSpecializationID int not null,
 primary key(CEEmployerPC,CEStartDate,ClinicID,DepSpecializationID),
-foreign key(CEEmployerPC) references Employer(PC),
+foreign key(CEEmployerPC) references CurrentEmployment(EmployerPC),
 foreign key(CEStartDate) references CurrentEmployment(StartDate),
-foreign key(ClinicID) references Clinic(ID),
-foreign key(DepSpecializationID) references Specialization(ID)
+foreign key(ClinicID) references Department(ClinicID),
+foreign key(DepSpecializationID) references Department(SpecializationID)
 )engine=innoDB;
