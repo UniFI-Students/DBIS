@@ -105,7 +105,7 @@ Il tempo di prenotazione e gestito sia dai medici che dai amministratori di clin
 
 1. EmployerSchedule(***CurrEmployerPC***, ***CurrEmployerStartDate***, ***CurrEmployerClinicId***, ***WorkScheduleId***)
 2. ClinicSchedule(***ClinicId***, ***WorkScheduleId***)
-3. Department-CurrentEmployment(***CEEmployerPC***, **CEStartDate**, ***ClinicId***,  ***DepSpecializationId***)
+3. Department-CurrentEmployment(***CEEmployerPC***, ***CEStartDate***, ***ClinicId***,  ***DepSpecializationId***)
 
 ### Reference keys
 
