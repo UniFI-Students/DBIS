@@ -1,8 +1,8 @@
 #Creating Database
 
-DROP DATABASE IF EXISTS ClinicsDB;
-CREATE DATABASE ClinicsDB;
-USE ClinicsDB;
+drop database if exists ClinicsDB;
+create database ClinicsDB;
+use ClinicsDB;
 
 
 #Creating Tables
@@ -17,7 +17,7 @@ create table if not exists Account(
 ) engine=innoDB;
 
 create table if not exists Clinic(
-	ID int primary key,
+	Id int primary key,
 	Street char (15) not null,
 	City char(10) not null,
 	Country char(10) not null,
@@ -25,7 +25,7 @@ create table if not exists Clinic(
 ) engine=innoDB;
 
 create table if not exists Specialization(
-	ID int primary key,
+	Id int primary key,
 	Name char(10) not null
 ) engine=innoDB;
 
@@ -39,7 +39,7 @@ create table if not exists Patient(
 	Country char(10) not null,
 	PostCode int not null,
 	AccountId int,
-	foreign key (AccountId) references Account(ID)
+	foreign key (AccountId) references Account(Id)
 ) engine=innoDB;
 
 create table if not exists Employer(
@@ -48,14 +48,14 @@ create table if not exists Employer(
 	Surname char(10) not null,
 	BirthDate date not null,
 	AccountId int,
-	foreign key (AccountId) references Account(ID)
+	foreign key (AccountId) references Account(Id)
 ) engine=innoDB;
 
 create table if not exists Medic(
 	EmployerPC char(16) primary key,
-	SpecializationID int not null,
+	SpecializationId int,
 	foreign key (EmployerPC) references Employer(PC),
-	foreign key (SpecializationID) references Specialization(ID)
+	foreign key (SpecializationId) references Specialization(Id)
 ) engine=innoDB;
 
 create table if not exists Administrator(
@@ -66,62 +66,62 @@ create table if not exists Administrator(
 
 create table if not exists CurrentEmployment(
 	EmployerPC char(16) not null,
-	ClinicID int not null,
+	ClinicId int not null,
 	StartDate date not null,
 	Salary int,
-	primary key (EmployerPC, StartDate, ClinicID),
+	primary key (EmployerPC, StartDate, ClinicId),
 	foreign key (EmployerPC) references Employer(PC),
-	foreign key (ClinicID) references Clinic(ID)
+	foreign key (ClinicId) references Clinic(Id)
 ) engine=innoDB;
 
 create table if not exists PastEmployment(
 	EmployerPC char(16) not null,
-	ClinicID int not null,
+	ClinicId int not null,
 	StartDate date not null,
 	DismissalDate date,
-	primary key (EmployerPC,StartDate,ClinicID),
+	primary key (EmployerPC, StartDate, ClinicId),
 	foreign key (EmployerPC) references Employer(PC),
-	foreign key (ClinicID) references Clinic(ID)
+	foreign key (ClinicId) references Clinic(Id)
 ) engine=innoDB;
 
 create table if not exists Department(
-	ClinicID int not null,
-	SpecializationID int not null,
+	ClinicId int not null,
+	SpecializationId int not null,
 	PrimaryMedicEmployerPC char(16) not null,
-	primary key (ClinicID,SpecializationID),
-	foreign key (ClinicID) references Clinic(ID),
-	foreign key (SpecializationID) references Specialization(ID),
+	primary key (ClinicId, SpecializationId),
+	foreign key (ClinicId) references Clinic(Id),
+	foreign key (SpecializationID) references Specialization(Id),
 	foreign key (PrimaryMedicEmployerPC) references Medic(EmployerPC)
 ) engine=innoDB;
 
 create table WorkSchedule(
-	ID int primary key,
+	Id int primary key,
 	StartTime time not null,
 	EndTime time not null,
 	Date date,
-	DayOfTheWeek enum('MON','TUE','WED','THU','FRI','SAT','SUN'),
-	Type enum('Daily work schedule','Week daily work schedule') not null
+	DayOfTheWeek enum('MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'),
+	Type enum('Week', 'Date') not null
 ) engine=innoDB;
 
 create table if not exists Result(
 	Date date not null,
-	ClinicID int not null,
+	ClinicId int not null,
 	MedicEmployerPC char(16) not null,
 	PatientPC char(16) not null,
 	Document varchar(256) not null,
-	primary key (Date, ClinicID, MedicEmployerPC, PatientPC),
-	foreign key (ClinicID) references Clinic(ID),
+	primary key (Date, ClinicId, MedicEmployerPC, PatientPC),
+	foreign key (ClinicId) references Clinic(Id),
 	foreign key (MedicEmployerPC) references Medic(EmployerPC),
 	foreign key (PatientPC) references Patient(PC)
 ) engine=innoDB;
 
 create table if not exists AppointmentBooking(
 	DateTime datetime not null,
-	ClinicID int not null,
+	ClinicId int not null,
 	MedicEmployerPC char(16) not null,
 	PatientPC char(16),
-	primary key (DateTime,ClinicID,MedicEmployerPC),
-	foreign key (ClinicID) references Clinic(ID),
+	primary key (DateTime, ClinicId, MedicEmployerPC),
+	foreign key (ClinicId) references Clinic(Id),
 	foreign key (MedicEmployerPC) references Medic(EmployerPC),
 	foreign key (PatientPC) references Patient(PC)
 ) engine=innoDB;
@@ -131,27 +131,27 @@ create table if not exists AppointmentBooking(
 create table if not exists EmployerSchedule(
 	CurrEmployerPC char(16) not null,
 	CurrEmployerStartDate date not null,
-	CurrEmployerClinicID int not null,
-	WorkScheduleID int not null,
-	primary key (CurrEmployerPC, CurrEmployerStartDate, CurrEmployerClinicID, WorkScheduleID),
-	foreign key (CurrEmployerPC, CurrEmployerStartDate, CurrEmployerClinicID) references CurrentEmployment(EmployerPC, StartDate, ClinicID),
-	foreign key (WorkScheduleID) references WorkSchedule(ID)
+	CurrEmployerClinicId int not null,
+	WorkScheduleId int not null,
+	primary key (CurrEmployerPC, CurrEmployerStartDate, CurrEmployerClinicId, WorkScheduleId),
+	foreign key (CurrEmployerPC, CurrEmployerStartDate, CurrEmployerClinicId) references CurrentEmployment(EmployerPC, StartDate, ClinicId),
+	foreign key (WorkScheduleId) references WorkSchedule(Id)
 ) engine=innoDB;
 
 create table if not exists ClinicSchedule(
-	ClinicID int not null,
-	WorkScheduleID int not null,
-	primary key (ClinicID,WorkScheduleID),
-	foreign key (ClinicID) references Clinic(ID),
-	foreign key (WorkScheduleID) references WorkSchedule(ID)
+	ClinicId int not null,
+	WorkScheduleId int not null,
+	primary key (ClinicId, WorkScheduleId),
+	foreign key (ClinicId) references Clinic(Id),
+	foreign key (WorkScheduleId) references WorkSchedule(Id)
 ) engine=innoDB;
 
 create table if not exists DepartmentCurrentEmployment(
 	CEEmployerPC char(16) not null,
 	CEStartDate date not null,
-	ClinicID int not null,
-	DepSpecializationID int not null,
-	primary key (CEEmployerPC,CEStartDate,ClinicID,DepSpecializationID),
-	foreign key (CEEmployerPC, CEStartDate, ClinicID) references CurrentEmployment(EmployerPC, StartDate, ClinicID),
-	foreign key (ClinicID, DepSpecializationID) references Department(ClinicID, SpecializationID)
+	ClinicId int not null,
+	DepSpecializationId int not null,
+	primary key (CEEmployerPC, CEStartDate, ClinicId, DepSpecializationID),
+	foreign key (CEEmployerPC, CEStartDate, ClinicId) references CurrentEmployment(EmployerPC, StartDate, ClinicId),
+	foreign key (ClinicId, DepSpecializationId) references Department(ClinicID, SpecializationId)
 ) engine=innoDB;
