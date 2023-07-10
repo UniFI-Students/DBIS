@@ -1,16 +1,18 @@
-Cancellare una prenotazione:
+#Cancellare una prenotazione:
 
 DELIMITER $$
-CREATE PROCEDURE cancella_prenotazione(PC CHAR(16),date DATETIME)
+
+CREATE PROCEDURE cancella_prenotazione(PC CHAR(16), date DATETIME)
 BEGIN
 IF PC = PatientPC and DATETIME= DateTime THEN SET PatientPC = null ;
 SELECT 'Prenotazione cancellata';
 ELSE SELECT 'Prenotazione non presente';
 END IF;
 END $$
+
 DELIMITER ;
 
-trovare il numero di medici divisi per specializazione:
+#trovare il numero di medici divisi per specializazione:
 
 DELIMITER $$
 
@@ -24,8 +26,10 @@ END $$
 
 DELIMITER ;
 
-Trova il numero di dipendenti attuali:
+#Trova il numero di dipendenti attuali:
+
 DELIMITER $$
+
 CREATE PROCEDURE findCurrentEmployers(Sal int)
 BEGIN
 DECLARE temp INT;
@@ -35,4 +39,5 @@ IF (temp>0) THEN SELECT 'there are: ', temp,' current employer';
 ELSE SELECT 'there are no current employer';
 END IF;
 END $$
+
 DELIMITER ;
