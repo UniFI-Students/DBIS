@@ -8,3 +8,7 @@
 CREATE VIEW ItalianClinic AS
 	SELECT * FROM Clinic C
 		WHERE C.Country='Italia';
+
+ #trovare il PC dei dipendenti che sono andati via e sono tornati e attualmente lavorano
+        select EmployerPC
+from currentemployment natural join pastemployment;
