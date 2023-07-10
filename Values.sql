@@ -1,28 +1,97 @@
-delete from AppointmentBooking;
+use ClinicsDB;
+
+delete from DepartmentCurrentEmployment;
+delete from Result;
+delete from ClinicSchedule;
+delete from EmployerSchedule;
+delete from WorkSchedule;
 delete from CurrentEmployment;
+delete from PastEmployment;
+delete from AppointmentBooking;
+delete from Department;
 delete from Medic;
+delete from Administrator;
 delete from Employer;
 delete from Clinic;
 delete from Patient;
+delete from Specialization;
+delete from Account;
 
-insert into Employer (PC, Name, Surname, BirthDate, AccountId)
-values 	("1", "MName", "MSurname", date("2023-07-10"), null),
-		("2", "MName", "MSurname", date("2023-07-10"), null);
 
-insert into Medic (EmployerPC, SpecializationId)
-values 	("1", null),
-		("2", null);
+load data local infile "F:\\DBIS\\Tables CSV\\Account.csv" into table Account
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
 
-insert into Clinic (Id, Street, City, Country, PostCode)
-values (1, "CStreet", "CCity", "CCountry", 1);
+load data local infile "F:\\DBIS\\Tables CSV\\Specialization.csv" into table Specialization
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
 
-insert into Patient (PC, Name, Surname, BirthDate, Street, City, Country, PostCode, AccountId)
-values ("1", "PName", "PSurname", date("2023-07-09"), "PStreet", "PCity", "PCountry", 2, null);
+load data local infile "F:\\DBIS\\Tables CSV\\Employer.csv" into table Employer
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
 
-insert into AppointmentBooking(DateTime, ClinicId, MedicEmployerPC, PatientPC)
-values (date("2023-07-10"), 1, "1", "1");
+load data local infile "F:\\DBIS\\Tables CSV\\Medic.csv" into table Medic
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
 
-insert into CurrentEmployment(EmployerPC, ClinicId, StartDate, Salary)
-values 	("1", "1", date("2021-07-10"), 15),
-		("2", "1", date("2021-07-10"), 15);
-		
+load data local infile "F:\\DBIS\\Tables CSV\\Administrator.csv" into table Administrator
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
+
+load data local infile "F:\\DBIS\\Tables CSV\\Clinic.csv" into table Clinic
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
+
+load data local infile "F:\\DBIS\\Tables CSV\\Patient.csv" into table Patient
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
+
+load data local infile "F:\\DBIS\\Tables CSV\\AppointmentBooking.csv" into table AppointmentBooking
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
+
+load data local infile "F:\\DBIS\\Tables CSV\\CurrentEmployment.csv" into table CurrentEmployment
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
+
+load data local infile "F:\\DBIS\\Tables CSV\\PastEmployment.csv" into table PastEmployment
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
+
+load data local infile "F:\\DBIS\\Tables CSV\\Department.csv" into table Department
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
+
+load data local infile "F:\\DBIS\\Tables CSV\\DepartmentCurrentEmployment.csv" into table DepartmentCurrentEmployment
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
+
+load data local infile "F:\\DBIS\\Tables CSV\\WorkSchedule.csv" into table WorkSchedule
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines
+(Id, StartTime, EndTime, @Date, @DayOfTheWeek, Type)
+set Date = nullif(@Date,''),
+	DayOfTheWeek = nullif(@DayOfTheWeek,'');
+
+load data local infile "F:\\DBIS\\Tables CSV\\ClinicSchedule.csv" into table ClinicSchedule
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;
+
+load data local infile "F:\\DBIS\\Tables CSV\\EmployerSchedule.csv" into table EmployerSchedule
+fields terminated by ';'
+lines terminated by '\r\n'
+ignore 1 lines;

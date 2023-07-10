@@ -1,4 +1,4 @@
-#Cancel appointment booking 
+#Cancel appointment booking for specific dateTime, clinic, medic and patient
 drop procedure if exists CancelAppoinmentBooking;
 DELIMITER $$
 create procedure CancelAppoinmentBooking(in AppDateTime datetime,
@@ -9,8 +9,7 @@ begin
 	if (select count(*) 
 		from AppointmentBooking Ab
 		where	Ab.ClinicId = AppClinicId and 
-				Ab.MedicEmployerPC = AppMedicPC and
-				Ab.PatientPC = AppPatientPC
+				Ab.MedicEmployerPC = AppMedicPC
 		) = 0
 	then 	select 'Appoinment booking not found';
 	else 	update AppointmentBooking Ab
@@ -22,40 +21,46 @@ end if;
 end $$
 DELIMITER ;
 
-#List paid salaries by specific clinic in its departments.
-drop function if exists ListClinicSumOfThePaidSalariesForDeparments;
+#List paid salaries for each clinic
+# Example of possible output:
+#	|	ClinicRelativeData	|	PaidSalary	|
+#	|						|		25		|	
+#	|						|		15		|
+drop procedure if exists ListClinicWithTheSumOfPaidSalaries;
 DELIMITER $$
-create procedure ListClinicSumOfThePaidSalariesForDeparments(ClinicId int)
+create procedure ListClinicWithTheSumOfPaidSalaries()
 begin
-	# Gets in input ClinicId and returns for all deparments salary paid in them
-    # Example of possible output:
-    #	|	DeparmentSpecialization	|	Salary	|
-    #	|		SpecializationA		|	150000	|
-    #	|		SpecializationB		| 	  2000	|
-    #	|		SpecializationC		|	     0	|
-    # All department specialization listed above must be deparments of the clinic with ClinicId
-    
+    select C.Id as ClinicId, C.Street as ClinicStreet, C.City as ClinicCity, C.Country as ClinicCountry, C.PostCode as ClinicPostCode, sum(CE.Salary) as PaidSalary from CurrentEmployment CE
+    join Clinic C on C.Id = CE.ClinicId
+    group by C.Id;
 end $$
 DELIMITER ;
 
 #List work schedule of the clinic
-drop function if exists ListWorkScheduleOfTheClinic;
+# Gets in input ClinicId, NextDaysInterval, CurrentDate and 
+# returns work schedule for this clinic with daily work schedule 
+# and specific date in the NextDaysInterval days after the CurrentDate.
+# Example of possible output:
+#	|	ClinicRelativeData	|	Type	|	StartTime	|	EndTime		|	DayOfTheWeek	|		Date	|
+#	|						|	Week	|	9:00:00		|	17:00:00	|		MON			|		NULL	|
+#	|						|	Week	|	9:00:00		|	17:00:00	|		TUE			|		NULL	|
+#	|						|	Week	|	9:00:00		|	17:00:00	|		WED			|		NULL	|
+#	|						|	Week	|	9:00:00		|	17:00:00	|		THU			|		NULL	|
+#	|						|	Week	|	9:00:00		|	17:00:00	|		FRI			|		NULL	|
+#	|						|	Week	|	9:00:00		|	17:00:00	|		SAT			|		NULL	|
+#	|						|	Week	|	9:00:00		|	17:00:00	|		SUN			|		NULL	|
+#	|						|	Date	|	9:00:00		|	10:00:00	|		NULL		|	2023-12-31	|
+drop procedure if exists ListWorkScheduleOfTheClinic;
 DELIMITER $$
-create procedure ListWorkScheduleOfTheClinic(ClinicId int, NextDaysInterval int)
+create procedure ListWorkScheduleOfTheClinic(ClinicId int, NextDaysInterval int, CurrentDate date)
 begin
-	# Gets in input ClinicId, NextDaysInterval and 
-    # returns work schedule for this clinic with daily work schedule and specific date in the NextDaysInterval days.
-    # Example of possible output:
-    #	|	Type	|	StartTime	|	EndTime	|	DayOfTheWeek	|		Date	|
-    #	|	Week	|	9:00		|	17:00	|		MON			|		NULL	|
-    #	|	Week	|	9:00		|	17:00	|		TUE			|		NULL	|
-    #	|	Week	|	9:00		|	17:00	|		WED			|		NULL	|
-    #	|	Week	|	9:00		|	17:00	|		THU			|		NULL	|
-    #	|	Week	|	9:00		|	17:00	|		FRI			|		NULL	|
-    #	|	Week	|	9:00		|	17:00	|		SAT			|		NULL	|
-    #	|	Week	|	9:00		|	17:00	|		SUN			|		NULL	|
-    #	|	Date	|	9:00		|	10:00	|		NULL		|	2023-12-31	|
-    
+    select C.Id as ClinicId, C.Street as ClinicStreet, C.City as ClinicCity, C.Country as ClinicCountry, C.PostCode as ClinicPostCode, WS.Type, WS.StartTime, WS.EndTime, WS.DayOfTheWeek, WS.Date  
+	from WorkSchedule WS
+		join ClinicSchedule CS on (CS.WorkScheduleId = WS.Id)
+		join Clinic C on (C.Id = CS.ClinicId)
+		having 	(WS.Type = "Week") or 
+				(WS.Type = "Date" and (WS.Date between CurrentDate and date_add(CurrentDate, interval NextDaysInterval day)));
+	
 end $$
 DELIMITER ;
 

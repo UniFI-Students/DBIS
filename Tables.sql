@@ -11,32 +11,32 @@ use ClinicsDB;
 
 create table if not exists Account(
 	Id int primary key,
-	Login char(10) not null,
+	Login char(32) not null,
 	Password int not null,
 	Type enum('Patient','Employer') not null
 ) engine=innoDB;
 
 create table if not exists Clinic(
 	Id int primary key,
-	Street char (15) not null,
-	City char(10) not null,
-	Country char(10) not null,
+	Street char (64) not null,
+	City char(64) not null,
+	Country char(64) not null,
 	PostCode int not null
 ) engine=innoDB;
 
 create table if not exists Specialization(
 	Id int primary key,
-	Name char(10) not null
+	Name char(32) not null
 ) engine=innoDB;
 
 create table if not exists Patient(
 	PC char(16) primary key,
-	Name char(10) not null,
-	Surname char(10) not null,
+	Name char(16) not null,
+	Surname char(16) not null,
 	BirthDate date not null,     
-	Street char (15) not null,
-	City char(10) not null,
-	Country char(10) not null,
+	Street char (64) not null,
+	City char(64) not null,
+	Country char(64) not null,
 	PostCode int not null,
 	AccountId int,
 	foreign key (AccountId) references Account(Id)
