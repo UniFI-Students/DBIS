@@ -24,4 +24,15 @@ END $$
 
 DELIMITER ;
 
-
+Trova il numero di dipendenti attuali:
+DELIMITER $$
+CREATE PROCEDURE findCurrentEmployers(Sal int)
+BEGIN
+DECLARE temp INT;
+SELECT COUNT(*) FROM Employer
+WHERE Sal != null INTO temp;
+IF (temp>0) THEN SELECT 'there are: ', temp,' current employer';
+ELSE SELECT 'there are no current employer';
+END IF;
+END $$
+DELIMITER ;
