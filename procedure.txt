@@ -1,18 +1,14 @@
 Cancellare una prenotazione:
 
 DELIMITER $$
-CREATE PROCEDURE cancel_booking(PC CHAR(16))
+CREATE PROCEDURE cancella_prenotazione(PC CHAR(16),date DATETIME)
 BEGIN
-DECLARE temp INT;
-SELECT COUNT(*) FROM AppoinmentBooking
-WHERE PC = PatientPC INTO temp;
-IF (temp>0) THEN DELETE FROM AppoinmentBooking WHERE PC = PatientPC;
-SELECT 'booking successfully canceled';
-ELSE SELECT 'booking not in the system';
+IF PC = PatientPC and DATETIME= DateTime THEN SET PatientPC = null ;
+SELECT 'Prenotazione cancellata';
+ELSE SELECT 'Prenotazione non presente';
 END IF;
 END $$
 DELIMITER ;
-
 
 trovare il numero di medici divisi per specializazione:
 
