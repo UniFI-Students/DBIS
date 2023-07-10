@@ -1,0 +1,10 @@
+ # verificare se il paziente è minorenne
+ SELECT Name, Surname
+	FROM Patient
+	WHERE BirthDate > 18/07/2005;
+
+  # verificare se una clinica è in Italia
+    DROP VIEW IF EXISTS ItalianClinic;
+CREATE VIEW ItalianClinic AS
+	SELECT * FROM Clinic C
+		WHERE C.Country='Italia';
