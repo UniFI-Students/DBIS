@@ -1,5 +1,11 @@
-PXPPJC36L03D727A ;mario;Rabelli;15/10/1973;rossi;Berlino;Germania;32145;123
-DZVZRP50E31I263L;alberto;Erri;12/07/1965;washington;New york;USA;23112;132
-YSBDDK77E08A573L;sara;lusi;22/03/2000;colle;Minsk;Bielorussia;23445;453
-MSFMLD67T18I145T;elisa;mesa;03/08/1999;52nd;Firenze;Italia;50100;233
-FQDJQC86H08E892V;marco;caloto;12/05/1923;rei;Roma;Slovenia;42233;435
+PC;Name;Surname;BirthDate;Street;City;Country;PostCode;AccountID;
+PXPPJC36L03D727A ;mario;Rabelli;15/10/1973;rossi;Berlino;Germania;32145;123;
+DZVZRP50E31I263L;alberto;Erri;12/07/1965;washington;New york;USA;23112;132;
+YSBDDK77E08A573L;sara;lusi;22/03/2000;colle;Minsk;Bielorussia;23445;453;
+MSFMLD67T18I145T;elisa;mesa;03/08/1999;52nd;Firenze;Italia;50100;233;
+FQDJQC86H08E892V;marco;caloto;12/05/1923;rei;Roma;Slovenia;42233;435;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
