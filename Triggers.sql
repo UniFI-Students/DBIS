@@ -1,5 +1,4 @@
-
-#################################### End Triggers usage End #########################################
+##################################### Triggers definition ###########################################
 
 #Triggers when inserting an a work schedule with type.
 #Sets Date to null if type is Week, otherwise will set DayOfTheWeek to null.
@@ -31,8 +30,6 @@ begin
 end $$
 DELIMITER ;
 
-
-
 #Triggers when inserting an a department with primary medic who does not work in the clinic of this department.
 #Throws sql error.
 drop trigger if exists InsertingIncorrectPrimaryMedicInDepartmentTrigger;
@@ -50,7 +47,6 @@ begin
 end $$
 DELIMITER ;
 
-
 #Triggers when updating an a department with primary medic who does not work in the clinic of this department.
 #Sets primary medic reference to a previous primary medic.
 drop trigger if exists UpdatingToIncorrectPrimaryMedicInDepartmentTrigger;
@@ -67,4 +63,38 @@ begin
 end $$
 DELIMITER ;
 
-#################################### End Triggers usage End #########################################
+#Triggers when inserting an a result with medic who does not currently work in the specified clinic
+#Throws sql error.
+drop trigger if exists InsertingIncorrectMedicClinicInResultTrigger;
+DELIMITER $$
+create trigger InsertingIncorrectMedicClinicInResultTrigger
+before insert on Result
+for each row
+begin
+	if (select count(*) from CurrentEmployment CE 
+			where 	CE.ClinicId = new.ClinicId and 
+					CE.EmployerPC = new.MedicEmployerPC) = 0
+	then 	SIGNAL SQLSTATE '45000'
+			SET MESSAGE_TEXT = 'Specified Primary medic does not work in the specified clinic';
+    end if; 
+end $$
+DELIMITER ;
+
+#Triggers when inserting an a appoinment booking with medic who does not currently work in the specified clinic
+#Throws sql error.
+drop trigger if exists InsertingIncorrectMedicClinicInAppointmentBookingTrigger;
+DELIMITER $$
+create trigger InsertingIncorrectMedicClinicInAppointmentBookingTrigger
+before insert on Result
+for each row
+begin
+	if (select count(*) from CurrentEmployment CE 
+			where 	CE.ClinicId = new.ClinicId and 
+					CE.EmployerPC = new.MedicEmployerPC) = 0
+	then 	SIGNAL SQLSTATE '45000'
+			SET MESSAGE_TEXT = 'Specified Primary medic does not work in the specified clinic';
+    end if; 
+end $$
+DELIMITER ;
+
+################################# End Triggers definition End #######################################
