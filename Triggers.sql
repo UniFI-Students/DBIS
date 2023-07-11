@@ -42,7 +42,7 @@ begin
 			where 	CE.ClinicId = new.ClinicId and 
 					CE.EmployerPC = new.PrimaryMedicEmployerPC) = 0
 	then 	SIGNAL SQLSTATE '45000'
-			SET MESSAGE_TEXT = 'Specified Primary medic does not work in a clinic of the specified department.departmentcurrentemployment';
+			SET MESSAGE_TEXT = 'Specified Primary medic does not work in a clinic of the specified department.';
     end if; 
 end $$
 DELIMITER ;
@@ -85,7 +85,7 @@ DELIMITER ;
 drop trigger if exists InsertingIncorrectMedicClinicInAppointmentBookingTrigger;
 DELIMITER $$
 create trigger InsertingIncorrectMedicClinicInAppointmentBookingTrigger
-before insert on Result
+before insert on AppointmentBooking
 for each row
 begin
 	if (select count(*) from CurrentEmployment CE 

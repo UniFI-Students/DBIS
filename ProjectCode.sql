@@ -202,7 +202,7 @@ insert into Patient value
 
 ('PXPPJC36L03D727A', 'mario', 'Rabelli', "1973-10-15", 'rossi', 'Berlino', 'Germania', 32145, 123),
 ('DZVZRP50E31I263L', 'alberto', 'Erri', "1965-07-12", 'washington', 'New york', 'USA', 23112, 132),
-('YSBDDK77E08A573L', 'sara', 'lusi'," 2000-03-22", 'colle', 'Minsk', 'Bielorussia', 23445, 453),
+('YSBDDK77E08A573L', 'sara', 'lusi', "2000-03-22", 'colle', 'Minsk', 'Bielorussia', 23445, 453),
 ('MSFMLD67T18I145T', 'elisa', 'mesa', "1999-08-03", '52nd', 'Firenze', 'Italia', 50100, 233),
 ('FQDJQC86H08E892V', 'marco', 'caloto', "1923-05-12", 'rei', 'Roma', 'Slovenia', 42233, 435);
 
@@ -259,13 +259,13 @@ insert into Department values
 
 insert into WorkSchedule values
 
-(1, '08:00', '22:00', "2023-07-24", null , 1),
-(2, '08:00', '22:00', "2023-07-25", null , 1),
-(3, '08:00', '22:00', null , 3, 2),
-(4, '08:00', '22:00', null, 4, 2),
-(5, '08:00', '22:00', "2023-07-28", null, 1),
-(6, '09:00', '23:00', null, 6, 2),
-(7, '09:00', '23:00', "2023-07-30", null, 1); 
+(1, '08:00', '22:00', "2023-07-24", null , 2),
+(2, '08:00', '22:00', "2023-07-25", null , 2),
+(3, '08:00', '22:00', null , 3, 1),
+(4, '08:00', '22:00', null, 4, 1),
+(5, '08:00', '22:00', "2023-07-28", null, 2),
+(6, '09:00', '23:00', null, 6, 1),
+(7, '09:00', '23:00', "2023-07-30", null, 2); 
 
 insert into result values
 
@@ -403,7 +403,7 @@ begin
 			where 	CE.ClinicId = new.ClinicId and 
 					CE.EmployerPC = new.PrimaryMedicEmployerPC) = 0
 	then 	SIGNAL SQLSTATE '45000'
-			SET MESSAGE_TEXT = 'Specified Primary medic does not work in a clinic of the specified department.departmentcurrentemployment';
+			SET MESSAGE_TEXT = 'Specified Primary medic does not work in a clinic of the specified department.';
     end if; 
 end $$
 DELIMITER ;
@@ -446,7 +446,7 @@ DELIMITER ;
 drop trigger if exists InsertingIncorrectMedicClinicInAppointmentBookingTrigger;
 DELIMITER $$
 create trigger InsertingIncorrectMedicClinicInAppointmentBookingTrigger
-before insert on appointmentbooking
+before insert on AppointmentBooking
 for each row
 begin
 	if (select count(*) from CurrentEmployment CE 
@@ -477,7 +477,7 @@ where D.ClinicId = 2333 and D.SpecializationId = 123;
 
 #################################### END TRIGGER USAGE END #####################################
 
-########################################  PROCEDURESA ##########################################
+########################################  PROCEDURES  ##########################################
 
 #Cancel appointment booking for specific dateTime, clinic, medic and patient
 drop procedure if exists CancelAppoinmentBooking;
@@ -512,7 +512,7 @@ DELIMITER $$
 create procedure ListClinicWithTheSumOfPaidSalaries()
 begin
     select C.Id as ClinicId, C.Street as ClinicStreet, C.City as ClinicCity, C.Country as ClinicCountry, C.PostCode as ClinicPostCode, sum(CE.Salary) as PaidSalary from CurrentEmployment CE
-    join Clinic C on C.Id = CE.ClinicId
+    right join Clinic C on C.Id = CE.ClinicId
     group by C.Id;
 end $$
 DELIMITER ;
@@ -565,15 +565,18 @@ DELIMITER ;
 
 #############################   PROCEDURE AND FUNCTION CALL   ###############################
 
-call ClinicsDB.CancelAppoinmentBooking(date("2023-07-10"), "1", "1", "1");
+call ClinicsDB.CancelAppoinmentBooking(date("7.11.23 11:00"), 2321, 'PFMKQH87D51D856Z', 'YSBDDK77E08A573L');
+
+#Cancel AppoinmentBooking that does not exists
+call ClinicsDB.CancelAppoinmentBooking(date("7.11.23 11:00"), 2321, 'YSBDDK77E08A573L', 'YSBDDK77E08A573L');
 
 call ClinicsDB.ListClinicWithTheSumOfPaidSalaries();
 #Alternative for previous procedure call by using function call and select statement
 select *, ClinicsDB.GetClinicSumOfThePaidSalaries(C.Id) from Clinic C;
 
-call ClinicsDB.ListWorkScheduleOfTheClinic("1", 30, date("2023-07-10"));
+call ClinicsDB.ListWorkScheduleOfTheClinic("2333", 30, date("2023-07-10"));
 
-select ClinicsDB.GetClinicSumOfThePaidSalaries("1");
+select ClinicsDB.GetClinicSumOfThePaidSalaries("2333");
 
 ########################## END PROCEDURES AND FUNCTIONS USAGE END  ###############################
 
