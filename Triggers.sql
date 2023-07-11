@@ -1,3 +1,38 @@
+
+#################################### End Triggers usage End #########################################
+
+#Triggers when inserting an a work schedule with type.
+#Sets Date to null if type is Week, otherwise will set DayOfTheWeek to null.
+drop trigger if exists AdjustValuesForWorkScheduleOnInsertTrigger;
+DELIMITER $$
+create trigger AdjustValuesForWorkScheduleOnInsertTrigger
+before insert on WorkSchedule
+for each row
+begin
+	case new.Type
+		when "Week" then set new.Date = null;
+        when "Date" then set new.DayOfTheWeek = null;
+	end case;
+end $$
+DELIMITER ;
+
+#Triggers when updating an a work schedule with type.
+#Sets Date to null if type is Week, otherwise will set DayOfTheWeek to null.
+drop trigger if exists AdjustValuesForWorkScheduleOnUpdateTrigger;
+DELIMITER $$
+create trigger AdjustValuesForWorkScheduleOnUpdateTrigger
+before update on WorkSchedule
+for each row
+begin
+	case new.Type
+		when "Week" then set new.Date = null;
+        when "Date" then set new.DayOfTheWeek = null;
+	end case;
+end $$
+DELIMITER ;
+
+
+
 #Triggers when inserting an a department with primary medic who does not work in the clinic of this department.
 #Throws sql error.
 drop trigger if exists InsertingIncorrectPrimaryMedicInDepartmentTrigger;
@@ -31,3 +66,5 @@ begin
     end if; 
 end $$
 DELIMITER ;
+
+#################################### End Triggers usage End #########################################
