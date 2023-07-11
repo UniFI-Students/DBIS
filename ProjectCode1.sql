@@ -200,25 +200,25 @@ insert into specialization values
 
 insert into Patient value
 
-('PXPPJC36L03D727A', 'mario', 'Rabelli', 1973-10-15, 'rossi', 'Berlino', 'Germania', 32145, 123),
-('DZVZRP50E31I263L', 'alberto', 'Erri', 1965-07-12, 'washington', 'New york', 'USA', 23112, 132),
-('YSBDDK77E08A573L', 'sara', 'lusi', 2000-03-22, 'colle', 'Minsk', 'Bielorussia', 23445, 453),
-('MSFMLD67T18I145T', 'elisa', 'mesa', 1999-08-03, '52nd', 'Firenze', 'Italia', 50100, 233),
-('FQDJQC86H08E892V', 'marco', 'caloto', 1923-05-12, 'rei', 'Roma', 'Slovenia', 42233, 435);
+('PXPPJC36L03D727A', 'mario', 'Rabelli', "1973-10-15", 'rossi', 'Berlino', 'Germania', 32145, 123),
+('DZVZRP50E31I263L', 'alberto', 'Erri', "1965-07-12", 'washington', 'New york', 'USA', 23112, 132),
+('YSBDDK77E08A573L', 'sara', 'lusi'," 2000-03-22", 'colle', 'Minsk', 'Bielorussia', 23445, 453),
+('MSFMLD67T18I145T', 'elisa', 'mesa', "1999-08-03", '52nd', 'Firenze', 'Italia', 50100, 233),
+('FQDJQC86H08E892V', 'marco', 'caloto', "1923-05-12", 'rei', 'Roma', 'Slovenia', 42233, 435);
 
 insert into Employer values 
 
-('RPEZFP37R21A013O', 'giuseppe', 'roberti',1981-03-11, 332),
-('LFLQYL81M25L059Z', 'alessia', 'mesa', 1978-04-09, 656),
-('VZFSWM59L01B869R', 'roberta', 'tissoni', 1991-02-09, 678),
-('HJRGPF33H24A848Y', 'maria', 'wu', 2002-08-23, 876),
-('PFMKQH87D51D856Z', 'giulia', 'ster', 1996-12-02, 544),
-('QXPDGC79T24H825O', 'maria', 'itto', 1995-11-07, 555),
-('TMNGMF49C66D010V', 'marta', 'reli', 1982-12-06, 783),
-('RZNMGK33P56C484V', 'giulio', 'barella', 1934-01-05, 676),
-('WHBCWS98R59A108X', 'roberto', 'koss', 1963-10-06, 878),
-('THXHMD53A30I981C', 'maya', 'bailey', 2003-05-12, 122),
-('CLRQHB75P26I054T', 'sage', 'morgan', 2001-12-07, 458);
+('RPEZFP37R21A013O', 'giuseppe', 'roberti',"1981-03-11", 332),
+('LFLQYL81M25L059Z', 'alessia', 'mesa', "1978-04-09", 656),
+('VZFSWM59L01B869R', 'roberta', 'tissoni', "1991-02-09", 678),
+('HJRGPF33H24A848Y', 'maria', 'wu', "2002-08-23", 876),
+('PFMKQH87D51D856Z', 'giulia', 'ster', "1996-12-02", 544),
+('QXPDGC79T24H825O', 'maria', 'itto', "1995-11-07", 555),
+('TMNGMF49C66D010V', 'marta', 'reli', "1982-12-06", 783),
+('RZNMGK33P56C484V', 'giulio', 'barella', "1934-01-05", 676),
+('WHBCWS98R59A108X', 'roberto', 'koss', "1963-10-06", 878),
+('THXHMD53A30I981C', 'maya', 'bailey', "2003-05-12", 122),
+('CLRQHB75P26I054T', 'sage', 'morgan', "2001-12-07", 458);
 
 insert into Medic values
 ('RPEZFP37R21A013O', 234),
@@ -237,21 +237,20 @@ insert into Administrator value
 
 insert into CurrentEmployment values
 
-('THXHMD53A30I981C', 2333, 2010-11-10, 1500),
-('RPEZFP37R21A013O', 5456, 2020-10-07, 1200),
-('LFLQYL81M25L059Z', 7678, 1982-09-15, 2000),
-('VZFSWM59L01B869R', 7665, 2021-03-09, 3000),
-('HJRGPF33H24A848Y', 2333, 2007-05-08, 1500),
-('PFMKQH87D51D856Z', 5456, 2005-06-03, 2500),
-('QXPDGC79T24H825O', 7678, 2012-08-12, 1800);
+('THXHMD53A30I981C', 2333, "2010-11-10", 1500),
+('RPEZFP37R21A013O', 5456, "2020-10-07", 1200),
+('LFLQYL81M25L059Z', 7678, "1982-09-15", 2000),
+('VZFSWM59L01B869R', 7665, "2021-03-09", 3000),
+('HJRGPF33H24A848Y', 2333, "2007-05-08", 1500),
+('PFMKQH87D51D856Z', 5456, "2005-06-03", 2500),
+('QXPDGC79T24H825O', 7678, "2012-08-12", 1800);
 
 insert into PastEmployment values 
 
-('TMNGMF49C66D010V', 5456, 1999-12-10, 2005-11-07),
-('RZNMGK33P56C484V', 7665, 2001-01-06, 2015-02-25),
-('WHBCWS98R59A108X', 7678, 1982-07-08, 2001-06-03),
-('THXHMD53A30I981C', 2333, 1971-05-22, 1984-02-15),
-('THXHMD53A30I981C', 2333, 1989-11-06, 1995-04-12);
+('TMNGMF49C66D010V', 5456, "2001-01-06", "2015-02-25"),
+('WHBCWS98R59A108X', 7678, "1982-07-08", "2001-06-03"),
+('THXHMD53A30I981C', 2333, "1971-05-22", "1984-02-15"),
+('THXHMD53A30I981C', 2333, "1989-11-06", "1995-04-12");
 
 insert into Department values 
 (5456, 234, 'RPEZFP37R21A013O'),
@@ -260,38 +259,38 @@ insert into Department values
 
 insert into WorkSchedule values
 
-(1, '08:00', '22:00', 2023-07-24, null , 1),
-(2, '08:00', '22:00', 2023-07-25, null , 1),
+(1, '08:00', '22:00', "2023-07-24", null , 1),
+(2, '08:00', '22:00', "2023-07-25", null , 1),
 (3, '08:00', '22:00', null , 3, 2),
 (4, '08:00', '22:00', null, 4, 2),
-(5, '08:00', '22:00', 2023-07-28, null, 1),
+(5, '08:00', '22:00', "2023-07-28", null, 1),
 (6, '09:00', '23:00', null, 6, 2),
-(7, '09:00', '23:00', 2023-07-30, null, 1); 
+(7, '09:00', '23:00', "2023-07-30", null, 1); 
 
 insert into result values
 
-(2023-07-25, 2333, 'RPEZFP37R21A013O', 'PXPPJC36L03D727A', 'guarito'),
-(2023-07-25, 2321, 'LFLQYL81M25L059Z', 'DZVZRP50E31I263L', 'coma'),
-(2023-07-27, 5456, 'VZFSWM59L01B869R', 'YSBDDK77E08A573L', 'sta recuperando'),
-(2023-07-28, 7665, 'HJRGPF33H24A848Y', 'MSFMLD67T18I145T', 'guarito'),
-(2023-07-30, 7678, 'PFMKQH87D51D856Z', 'FQDJQC86H08E892V', 'guarito'); 
+("2023-07-25", 2333, 'RPEZFP37R21A013O', 'PXPPJC36L03D727A', 'guarito'),
+("2023-07-25", 2321, 'LFLQYL81M25L059Z', 'DZVZRP50E31I263L', 'coma'),
+("2023-07-27", 5456, 'VZFSWM59L01B869R', 'YSBDDK77E08A573L', 'sta recuperando'),
+("2023-07-28", 7665, 'HJRGPF33H24A848Y', 'MSFMLD67T18I145T', 'guarito'),
+("2023-07-30", 7678, 'PFMKQH87D51D856Z', 'FQDJQC86H08E892V', 'guarito'); 
 
 
 insert into AppointmentBooking values
-('7.10.23 9:00', 2333, 'HJRGPF33H24A848Y', 'PXPPJC36L03D727A'), 
-('7.11.23 11:00', 2321, 'PFMKQH87D51D856Z', 'YSBDDK77E08A573L'),
-('8.11.23 15:00', 5456, 'VZFSWM59L01B869R', 'MSFMLD67T18I145T'),
-('8.12.23 18:00', 7665, 'LFLQYL81M25L059Z', 'FQDJQC86H08E892V');
+("7.10.23 9:00", 2333, 'HJRGPF33H24A848Y', 'PXPPJC36L03D727A'), 
+("7.11.23 11:00", 2321, 'PFMKQH87D51D856Z', 'YSBDDK77E08A573L'),
+("8.11.23 15:00", 5456, 'VZFSWM59L01B869R', 'MSFMLD67T18I145T'),
+("8.12.23 18:00", 7665, 'LFLQYL81M25L059Z', 'FQDJQC86H08E892V');
 
 insert into EmployerSchedule values
 
-('THXHMD53A30I981C', 2010-11-10, 2333, 1),
-('RPEZFP37R21A013O', 2020-10-07, 5456, 2),
-('LFLQYL81M25L059Z', 1982-09-15, 7678, 3),
-('VZFSWM59L01B869R', 2021-03-09, 7665, 4),
-('HJRGPF33H24A848Y', 2007-05-08, 2333, 5),
-('PFMKQH87D51D856Z', 2005-06-03, 5456, 6),
-('QXPDGC79T24H825O', 2012-08-12, 7678, 7);
+('THXHMD53A30I981C', "2010-11-10", 2333, 1),
+('RPEZFP37R21A013O', "2020-10-07", 5456, 2),
+('LFLQYL81M25L059Z', "1982-09-15", 7678, 3),
+('VZFSWM59L01B869R', "2021-03-09", 7665, 4),
+('HJRGPF33H24A848Y', "2007-05-08", 2333, 5),
+('PFMKQH87D51D856Z', "2005-06-03", 5456, 6),
+('QXPDGC79T24H825O', "2012-08-12", 7678, 7);
 
 
 insert into ClinicSchedule values
@@ -305,11 +304,11 @@ insert into ClinicSchedule values
 
 insert into DepartmentCurrentEmployment values
 
-('THXHMD53A30I981C', 2010-11-10 ,2333, 123),
-('RPEZFP37R21A013O', 2020-10-07, 5456, 234),
-('VZFSWM59L01B869R', 2021-03-09, 7665, 879),
-('HJRGPF33H24A848Y', 2007-05-08, 2333, 123),
-('PFMKQH87D51D856Z', 2005-06-03, 5456, 234);
+('THXHMD53A30I981C', "2010-11-10" ,2333, 123),
+('RPEZFP37R21A013O', "2020-10-07", 5456, 234),
+('VZFSWM59L01B869R', "2021-03-09", 7665, 879),
+('HJRGPF33H24A848Y', "2007-05-08", 2333, 123),
+('PFMKQH87D51D856Z', "2005-06-03", 5456, 234);
 
 
 
