@@ -1,5 +1,23 @@
 ################  insterting values into tables  #################
 
+delete from DepartmentCurrentEmployment;
+delete from Result;
+delete from ClinicSchedule;
+delete from EmployerSchedule;
+delete from WorkSchedule;
+delete from CurrentEmployment;
+delete from PastEmployment;
+delete from AppointmentBooking;
+delete from Department;
+delete from Medic;
+delete from Administrator;
+delete from Employer;
+delete from Clinic;
+delete from Patient;
+delete from Specialization;
+delete from Account;
+
+
 
 insert into Account value
 
@@ -150,20 +168,6 @@ insert into DepartmentCurrentEmployment values
 ('VZFSWM59L01B869R', 2021-03-09, 7665, 879),
 ('HJRGPF33H24A848Y', 2007-05-08, 2333, 123),
 ('PFMKQH87D51D856Z', 2005-06-03, 5456, 234);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
