@@ -1,13 +1,13 @@
-##################### Database creation #############################
+########################## 	 DATABASE CREATION    ##########################
 
 drop database if exists ClinicsDB;
 create database ClinicsDB;
 use ClinicsDB;
 
-##################### TABLES CREATION #############################
+###########################   TABLES CREATION   ########################### 
 
 
-##################### entities #####################
+################################ ENTITIES ################################
 
 create table if not exists Account(
 	Id int primary key,
@@ -126,7 +126,7 @@ create table if not exists AppointmentBooking(
 	foreign key (PatientPC) references Patient(PC)
 ) engine=innoDB;
 
-##################### Relationship #############################
+############################ RELATIONSHIP ############################
 
 create table if not exists EmployerSchedule(
 	CurrEmployerPC char(16) not null,
@@ -156,8 +156,10 @@ create table if not exists DepartmentCurrentEmployment(
 	foreign key (ClinicId, DepSpecializationId) references Department(ClinicID, SpecializationId)
 ) engine=innoDB;
 
-##################### END TABLE CREATION END #############################
-################  insterting values into tables  #################
+######################### END TABLE CREATION END #########################
+
+
+###########################  TABLE POPULATION  ###########################
 
 
 insert into Account value
@@ -309,10 +311,10 @@ insert into WorkSchedule values
 (7, '09:00', '23:00', 2023-07-30, null, 1); # se non metto null mi da errore
 
 
-################ End insterting values into tables End  #################
+#################### TABLES POPULATION  ####################
 
 
-##################### VISITS #############################
+########################## VISITS ##########################
 
 
 drop view if exists ItalianClinic;
@@ -320,9 +322,9 @@ create view ItalianClinic as
 	select * from Clinic C
 		where C.Country="Italia";
         
-################## END VISITS END ##################
+###################### END VISITS END ###################### 
 
-######################################## Interrogations #############################################
+#####################  INTERROGATION #######################
 
 #Find clinics where specific medic he worked before and works now
 select 	E.PC as EmployerPC, 
@@ -353,7 +355,7 @@ join Specialization SDepartment on D.SpecializationId = SDepartment.Id
 where D.ClinicId = 2333;
 
 
-#################################### End Interrogations End #########################################
+#################################### END INTERROGATION END #########################################
 
 ############################## Procedure call and function usage ####################################
 
