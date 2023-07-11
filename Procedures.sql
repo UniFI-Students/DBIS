@@ -1,3 +1,6 @@
+
+######################################## Procedures #############################################
+
 #Cancel appointment booking for specific dateTime, clinic, medic and patient
 drop procedure if exists CancelAppoinmentBooking;
 DELIMITER $$
@@ -63,8 +66,10 @@ begin
 	
 end $$
 DELIMITER ;
+###################################### end Procedures end #############################################
 
 
+######################################## Functions #############################################
 #Calculate paid salary by specific clinic.
 drop function if exists GetClinicSumOfThePaidSalaries;
 DELIMITER $$
@@ -78,4 +83,4 @@ begin
 end $$
 DELIMITER ;
 
-
+###################################### End Functions End #############################################

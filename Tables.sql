@@ -1,13 +1,14 @@
-#Creating Database
+##################### Database creation #############################
 
 drop database if exists ClinicsDB;
 create database ClinicsDB;
 use ClinicsDB;
 
 
-#Creating Tables
+##################### TABLES CREATION #############################
 
-#Entities:
+
+##################### entities #####################
 
 create table if not exists Account(
 	Id int primary key,
@@ -126,7 +127,7 @@ create table if not exists AppointmentBooking(
 	foreign key (PatientPC) references Patient(PC)
 ) engine=innoDB;
 
-#Relationships:
+##################### Relationship #############################
 
 create table if not exists EmployerSchedule(
 	CurrEmployerPC char(16) not null,
@@ -155,3 +156,5 @@ create table if not exists DepartmentCurrentEmployment(
 	foreign key (CEEmployerPC, CEStartDate, ClinicId) references CurrentEmployment(EmployerPC, StartDate, ClinicId),
 	foreign key (ClinicId, DepSpecializationId) references Department(ClinicID, SpecializationId)
 ) engine=innoDB;
+
+##################### END TABLE CREATION END #############################

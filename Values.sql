@@ -17,7 +17,7 @@ delete from Patient;
 delete from Specialization;
 delete from Account;
 
-
+############### TABLE POPULATION #########################
 load data local infile "F:\\DBIS\\Tables CSV\\Account.csv" into table Account
 fields terminated by ';'
 lines terminated by '\r\n'
@@ -95,3 +95,5 @@ load data local infile "F:\\DBIS\\Tables CSV\\EmployerSchedule.csv" into table E
 fields terminated by ';'
 lines terminated by '\r\n'
 ignore 1 lines;
+
+############### END TABLE POPULATION END #########################
