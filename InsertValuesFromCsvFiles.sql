@@ -18,67 +18,67 @@ delete from Specialization;
 delete from Account;
 
 ############### TABLE POPULATION #########################
-load data local infile "F:\\DBIS\\Tables CSV\\Account.csv" into table Account
+load data local infile "Account.csv" into table Account
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\Specialization.csv" into table Specialization
+load data local infile "Specialization.csv" into table Specialization
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\Employer.csv" into table Employer
+load data local infile "Employer.csv" into table Employer
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\Medic.csv" into table Medic
+load data local infile "Medic.csv" into table Medic
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\Administrator.csv" into table Administrator
+load data local infile "Administrator.csv" into table Administrator
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\Clinic.csv" into table Clinic
+load data local infile "Clinic.csv" into table Clinic
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\Patient.csv" into table Patient
+load data local infile "Patient.csv" into table Patient
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\CurrentEmployment.csv" into table CurrentEmployment
+load data local infile "CurrentEmployment.csv" into table CurrentEmployment
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\PastEmployment.csv" into table PastEmployment
+load data local infile "PastEmployment.csv" into table PastEmployment
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\AppointmentBooking.csv" into table AppointmentBooking
+load data local infile "AppointmentBooking.csv" into table AppointmentBooking
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\Department.csv" into table Department
+load data local infile "Department.csv" into table Department
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\DepartmentCurrentEmployment.csv" into table DepartmentCurrentEmployment
+load data local infile "DepartmentCurrentEmployment.csv" into table DepartmentCurrentEmployment
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\WorkSchedule.csv" into table WorkSchedule
+load data local infile "WorkSchedule.csv" into table WorkSchedule
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines
@@ -86,12 +86,12 @@ ignore 1 lines
 set Date = nullif(@Date,''),
 	DayOfTheWeek = nullif(@DayOfTheWeek,'');
 
-load data local infile "F:\\DBIS\\Tables CSV\\ClinicSchedule.csv" into table ClinicSchedule
+load data local infile "ClinicSchedule.csv" into table ClinicSchedule
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
 
-load data local infile "F:\\DBIS\\Tables CSV\\EmployerSchedule.csv" into table EmployerSchedule
+load data local infile "EmployerSchedule.csv" into table EmployerSchedule
 fields terminated by ';'
 lines terminated by '\n'
 ignore 1 lines;
